@@ -12,7 +12,7 @@ class UserController {
 	}
 
 	public async create (req: Request, res: Response): Promise<Response> {
-		const { githubUsername, techs, latitude, longitude } = req.body
+		const { githubUsername , techs, latitude, longitude } = req.body
 
 		let user = await User.findOne({ githubUsername })
 

@@ -6,15 +6,20 @@ import { parseStringAsArray } from '../utils/parseStringAsArray'
 
 class UserController {
 	public async index (req: Request, res: Response): Promise<Response> {
-		const users = await User.find()
+		try {
+			const users = await User.find()
 
-		return res.json(users)
+			return res.json(users)
+		}catch(e){
+			console.log(e)
+		}
 	}
 
 	public async create (req: Request, res: Response): Promise<Response> {
 		const { githubUsername , techs, latitude, longitude } = req.body
 
-		let user = await User.findOne({ githubUsername })
+		try {
+			let user = await User.findOne({ githubUsername })
 
 		if (!user) {
 			const apiResponse = await axios.get(`https://api.github.com/users/${githubUsername}`)
@@ -36,9 +41,15 @@ class UserController {
 				techs: techsArray,
 				location
 			})
+
+			// filter connections in a 10km radius
+			
 		}
 
 		return res.json(user)
+		}catch(e) {
+			console.log(e)
+		}
 	}
 }
 

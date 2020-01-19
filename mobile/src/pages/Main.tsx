@@ -5,6 +5,7 @@ import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import {MaterialIcons} from '@expo/vector-icons'
 
 import api from '../services/api'
+import {connect, disconnect} from '../services/socket'
 
 export default function Main({navigation}) {
   const [users, setUsers] = useState([])
@@ -33,10 +34,14 @@ export default function Main({navigation}) {
     loadInitialPosition()
   }, [])
 
-  function handleRegionChange(region) {
+  function handleRegionChange(region: object) {
     setCurrentRegion(region)
   }
 
+  function setupWebSocket() {
+    const {latitude, longitude} = currentRegion;
+    connect(latitude, longitude, techs)
+  }
   async function loadDevs() {
     const {latitude, longitude} = currentRegion
 
@@ -47,7 +52,7 @@ export default function Main({navigation}) {
         techs
       }
     })
-    
+    setupWebSocket()
     setUsers(response.data)
   }
   if(!currentRegion) return null
@@ -55,8 +60,8 @@ export default function Main({navigation}) {
   return (
     <>
       <MapView onRegionChangeComplete={handleRegionChange} initialRegion={currentRegion} style={styles.map}>
-        {users.map(user => {
-          <Marker key={user._id} coordinate={{latitude: user.location.coordinates[0], longitude: user.location.coordinates[1]}}>
+        {users.map(user => (
+          <Marker key={user._id} coordinate={{longitude: user.location.coordinates[0], latitude: user.location.coordinates[1]}}>
             <Image style={styles.avatar} source={{uri: user.avatarUrl}}/>
             <Callout onPress={() => {
               navigation.navigate('Profile', {github_username: user.githubUsername})
@@ -68,7 +73,7 @@ export default function Main({navigation}) {
               </View>
             </Callout>
           </Marker>
-        })}
+        ))}
       </MapView>
       <View style={styles.searchForm}> 
           <TextInput 
@@ -87,7 +92,7 @@ export default function Main({navigation}) {
     </>
   );
   }
-
+  
 const styles = StyleSheet.create({
   map: {
     flex: 1

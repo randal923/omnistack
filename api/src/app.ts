@@ -1,17 +1,23 @@
 import express from 'express'
 import cors from 'cors'
-import mongoose from 'mongoose'
-
+import mongoose, { connect, connection, connections } from 'mongoose'
+import http from 'http';
 import routes from './routes/users'
-
+import socketio from 'socket.io'
+import { parseStringAsArray } from './utils/parseStringAsArray'
 class App {
-	public express: express.Application;
+	private express: express.Application;
+	public port: number
+	private server: http.Server
+    private io: any
 
-	public constructor () {
+	public constructor (port: number) {
 		this.express = express()
+		this.port = port
 		this.middlewares()
 		this.database()
 		this.routes()
+		this.createServer()
 	}
 
 	private middlewares (): void {
@@ -26,9 +32,32 @@ class App {
 		})
 	}
 
+	private createServer(): void {
+		this.server = new http.Server(this.express)
+        this.io = socketio(this.server)
+	}
+	
 	private routes (): void {
 		this.express.use(routes)
 	}
+
+	public listen (): void {
+		const connections = []
+		this.server.listen('5000', () => {
+			console.log(`App running on port 5000`)
+		})
+		this.io.on('connection', (socket: any) => {
+			const {latitude, longitude, techs} = socket.handshake.query
+			connections.push({
+				id: socket.id,
+				coordinates: {
+					latitude: Number(latitude),
+					longitude: Number(longitude),
+				},
+				techs: techs
+			})
+		})
+	}
 }
 
-export default new App().express
+export default App

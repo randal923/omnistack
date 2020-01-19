@@ -1,3 +1,4 @@
-import app from './app'
+import App from './app'
 
-app.listen(5000)
+const app = new App(5000)
+app.listen()

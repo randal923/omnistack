@@ -1,3 +1,7 @@
+<h1 align="center">
+    <img alt="DevRadar" title="#delicinha" src="./devradar.svg" width="250px" />
+</h1>
+
 <h4 align="center">
   🚀 OmniStack Week
 </h4>
@@ -28,10 +32,10 @@
 
 This project was developer with the following technologies:
 
-- [Node.js](https://nodejs.org/en/)
-- [React](https://reactjs.org)
-- [React Native](https://facebook.github.io/react-native/)
-- [Expo](https://expo.io/)
+-   [Node.js](https://nodejs.org/en/)
+-   [React](https://reactjs.org)
+-   [React Native](https://facebook.github.io/react-native/)
+-   [Expo](https://expo.io/)
 
 ## 💻 Project
 
@@ -39,4 +43,4 @@ DevRadar is a project that connects developers that work with the same technolog
 
 ## 🔖 Layout
 
-You can download this project on the `.sketch` format through [this url](.github/DevRadar.sketch).
+You can download this project on the `.sketch` format through [this url](.DevRadar.sketch).

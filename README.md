@@ -36,6 +36,7 @@
 
 This project was developer with the following technologies:
 
+-   [TypeScript](https://www.typescriptlang.org/)
 -   [Node.js](https://nodejs.org/en/)
 -   [React](https://reactjs.org)
 -   [React Native](https://facebook.github.io/react-native/)
@@ -47,4 +48,4 @@ DevRadar is a project that connects developers that work with the same technolog
 
 ## 🔖 Layout
 
-You can download this project on the `.sketch` format through [this url](.sketch).
+You can download this project on the `.sketch` format through [this url](.devradar.sketch).

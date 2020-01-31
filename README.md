@@ -3,7 +3,7 @@
 </h1>
 
 <h4 align="center">
-  🚀 OmniStack Week
+  🚀 OmniStack
 </h4>
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Rocketseat/semana-omnistack-10">
@@ -47,4 +47,4 @@ DevRadar is a project that connects developers that work with the same technolog
 
 ## 🔖 Layout
 
-You can download this project on the `.sketch` format through [this url](.DevRadar.sketch).
+You can download this project on the `.sketch` format through [this url](.sketch).

@@ -24,10 +24,6 @@
 
 <br>
 
-<p align="center">
-  <img alt="Frontend" src=".github/devradar.png" width="100%">
-</p>
-
 ## :rocket: Technologies
 
 This project was developer with the following technologies:
